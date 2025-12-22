@@ -120,12 +120,26 @@ export default function Invoice({ booking, onClose }: InvoiceProps) {
           <div className="border-t border-dashed border-gray-300 pt-8">
             <h3 className="text-xs font-bold text-gray-400 uppercase mb-4 tracking-wider">Registered Participants</h3>
             <div className="grid grid-cols-2 gap-4">
-               {(booking.participants || []).map((p, idx) => (
-                 <div key={idx} className="bg-gray-50 p-3 rounded border border-gray-100 break-inside-avoid">
-                    <p className="font-bold text-sm text-gray-800">{p.fullName || 'N/A'}</p>
-                    <p className="text-xs text-gray-500 font-mono">ID: {p.idNumber || 'N/A'}</p>
-                 </div>
-               ))}
+               {(() => {
+                  let safeParticipants = [];
+                  try {
+                    if (Array.isArray(booking.participants)) {
+                      safeParticipants = booking.participants;
+                    } else if (typeof booking.participants === 'string') {
+                      safeParticipants = JSON.parse(booking.participants);
+                    }
+                  } catch (e) {
+                    console.error("Error parsing participants:", e);
+                    safeParticipants = [];
+                  }
+                  
+                  return (Array.isArray(safeParticipants) ? safeParticipants : []).map((p, idx) => (
+                     <div key={idx} className="bg-gray-50 p-3 rounded border border-gray-100 break-inside-avoid">
+                        <p className="font-bold text-sm text-gray-800">{p?.fullName || 'N/A'}</p>
+                        <p className="text-xs text-gray-500 font-mono">ID: {p?.idNumber || 'N/A'}</p>
+                     </div>
+                  ));
+               })()}
             </div>
           </div>
 
