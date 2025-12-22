@@ -1,40 +1,49 @@
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import path from 'path';
+import { supabase } from '../../lib/supabase';
+
+export const runtime = 'edge'; // Optional: Use Edge Runtime for faster uploads if compatible, or remove if causing issues. sticking to default for now is safer.
+// Actually, standard Node runtime is safer for compatibility unless we are sure about Edge limits.
+// Let's stick to standard runtime but usage of supabase-js is fine.
 
 export async function POST(request: Request) {
   try {
-    const data = await request.formData();
-    const file: File | null = data.get('file') as unknown as File;
+    const formData = await request.formData();
+    const file = formData.get('file') as File;
 
     if (!file) {
       return NextResponse.json({ success: false, message: 'No file uploaded' }, { status: 400 });
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
     // Create unique filename
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const ext = path.extname(file.name);
-    const filename = file.name.replace(/\.[^/.]+$/, "").replace(/[^a-zA-Z0-9]/g, '_') + '-' + uniqueSuffix + ext;
-    
-    // Save to public/uploads
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    
-    // Create uploads directory if it doesn't exist
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
+    // Sanitize filename to avoid issues
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+    const filePath = `${fileName}`;
+
+    // Upload to Supabase Storage
+    const { data, error } = await supabase
+      .storage
+      .from('trip-images')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false
+      });
+
+    if (error) {
+      console.error('Supabase storage error:', error);
+      throw error;
     }
 
-    const filepath = path.join(uploadDir, filename);
+    // Get Public URL
+    const { data: { publicUrl } } = supabase
+      .storage
+      .from('trip-images')
+      .getPublicUrl(filePath);
 
-    await writeFile(filepath, buffer);
-    const url = `/uploads/${filename}`;
-    return NextResponse.json({ success: true, url });
+    return NextResponse.json({ success: true, url: publicUrl });
+
   } catch (error) {
-    console.error('Error saving file:', error);
-    return NextResponse.json({ success: false, message: 'Error saving file' }, { status: 500 });
+    console.error('Error uploading file:', error);
+    return NextResponse.json({ success: false, message: 'Error uploading file' }, { status: 500 });
   }
 }
