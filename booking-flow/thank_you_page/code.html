@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Success - TravelApp</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b366",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#111714",
+                        "surface-dark": "#1C2621",
+                        "border-dark": "#293830",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased flex flex-col min-h-screen">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-solid border-slate-200 dark:border-border-dark bg-white/80 dark:bg-[#111714]/90 backdrop-blur-md">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center gap-2 cursor-pointer">
+<div class="text-primary">
+<span class="material-symbols-outlined icon-fill !text-3xl">travel_explore</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">TravelApp</h2>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Paket Wisata</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Open Trip</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Private Trip</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Tentang Kami</a>
+</nav>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<a class="hidden md:block text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-white transition-colors" href="#">ID / EN</a>
+<button class="hidden md:flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-[#111714] transition-transform hover:scale-105 active:scale-95">
+                        Login
+                    </button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center py-12 px-4 sm:px-6">
+<div class="w-full max-w-[800px] flex flex-col gap-8">
+<!-- Success Header -->
+<div class="text-center flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 ring-1 ring-primary/40">
+<span class="material-symbols-outlined !text-5xl icon-fill">check_circle</span>
+</div>
+<div class="space-y-2">
+<h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+                        Pemesanan Berhasil!
+                    </h1>
+<p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto text-base">
+                        Terima kasih telah memesan perjalanan bersama kami. Pembayaran Anda telah diterima dan rincian perjalanan Anda telah dikonfirmasi.
+                    </p>
+</div>
+</div>
+<!-- Booking Summary Card -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-xl overflow-hidden shadow-sm">
+<!-- Card Header -->
+<div class="px-6 py-4 border-b border-slate-200 dark:border-border-dark flex justify-between items-center bg-slate-50 dark:bg-[#151f1a]">
+<h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined !text-xl text-primary">receipt_long</span>
+                        Rincian Pesanan
+                    </h3>
+<span class="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs font-bold text-primary ring-1 ring-inset ring-green-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        Lunas (Paid)
+                    </span>
+</div>
+<!-- Grid Details -->
+<div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+<div class="flex flex-col gap-1">
+<span class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Kode Booking</span>
+<span class="text-base font-bold text-slate-900 dark:text-white font-mono tracking-wide">#TRIP-2023-8892</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Nama Trip</span>
+<span class="text-base font-medium text-slate-900 dark:text-white">Open Trip Labuan Bajo 3D2N</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Tanggal Keberangkatan</span>
+<div class="flex items-center gap-2 text-slate-900 dark:text-white font-medium">
+<span class="material-symbols-outlined !text-lg text-slate-400">calendar_month</span>
+                            24 Desember 2023
+                        </div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Jumlah Peserta</span>
+<div class="flex items-center gap-2 text-slate-900 dark:text-white font-medium">
+<span class="material-symbols-outlined !text-lg text-slate-400">group</span>
+                            2 Dewasa
+                        </div>
+</div>
+<div class="flex flex-col gap-1 sm:col-span-2 border-t border-dashed border-slate-200 dark:border-border-dark pt-4 mt-2">
+<div class="flex justify-between items-end">
+<span class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Total Pembayaran</span>
+<span class="text-2xl font-bold text-primary">Rp 5.500.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Info -->
+<div class="flex items-start gap-3 p-4 rounded-lg bg-[#25D366]/10 border border-[#25D366]/20">
+<span class="material-symbols-outlined text-[#25D366] shrink-0 mt-0.5">mark_chat_read</span>
+<div class="flex-1">
+<p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+<strong class="text-slate-900 dark:text-white block mb-0.5">Notifikasi Terkirim</strong>
+                        Detail pemesanan, tiket elektronik, dan panduan perjalanan telah kami kirimkan secara otomatis ke nomor WhatsApp yang terdaftar.
+                    </p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+<button class="flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-primary text-[#111714] font-bold text-sm hover:bg-primary/90 transition-all flex-1 sm:flex-initial min-w-[200px]">
+<span class="material-symbols-outlined !text-xl">download</span>
+                    Download Invoice
+                </button>
+<button class="flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-transparent border border-slate-300 dark:border-border-dark text-slate-700 dark:text-white font-bold text-sm hover:bg-slate-100 dark:hover:bg-white/5 transition-all flex-1 sm:flex-initial min-w-[200px]">
+<span class="material-symbols-outlined !text-xl">home</span>
+                    Kembali ke Beranda
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-border-dark bg-white dark:bg-[#111714] pt-12 pb-8">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary !text-3xl icon-fill">travel_explore</span>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">TravelApp</h2>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">
+                        Platform pemesanan perjalanan terpercaya untuk pengalaman liburan tak terlupakan di Indonesia.
+                    </p>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Perusahaan</h3>
+<ul class="flex flex-col gap-2">
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Tentang Kami</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Karir</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Partner</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Layanan</h3>
+<ul class="flex flex-col gap-2">
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Open Trip</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Private Trip</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Corporate Gathering</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Hubungi Kami</h3>
+<ul class="flex flex-col gap-2">
+<li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined !text-sm">mail</span> support@travelapp.id
+                        </li>
+<li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined !text-sm">call</span> +62 812 3456 7890
+                        </li>
+</ul>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-border-dark pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-slate-500 dark:text-slate-500">© 2023 TravelApp Indonesia. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">
+<span class="sr-only">Instagram</span>
+<!-- Using material icon as placeholder for social -->
+<span class="material-symbols-outlined">photo_camera</span>
+</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">
+<span class="sr-only">Twitter</span>
+<span class="material-symbols-outlined">flutter_dash</span>
+</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">
+<span class="sr-only">Facebook</span>
+<span class="material-symbols-outlined">public</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

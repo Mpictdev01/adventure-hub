@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  /* Adventure Hub Custom Colors - Semantic Names */
+  --color-primary: #19b366;
+  
+  /* Dynamic Theme Colors (Default is Dark) */
+  --color-background: #112119;
+  --color-surface: #1c2621;
+  --color-surface-darker: #111714;
+  --color-border: #293830;
+  --color-text-main: #ffffff;
+  --color-text-secondary: #9eb7ab;
+
+  /* Border Radius */
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+}
+
+/* Light Mode Overrides */
+:root.light {
+  --color-background: #ffffff;
+  --color-surface: #f3f4f6;
+  --color-surface-darker: #e5e7eb;
+  --color-border: #d1d5db;
+  --color-text-main: #111827;
+  --color-text-secondary: #4b5563;
+}
+
+/* Custom scrollbar for dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111714;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #293830;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #19b366;
+}
+
+/* Hero gradient utility */
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(17, 23, 20, 0.3) 0%, rgba(17, 23, 20, 0.7) 60%, rgba(17, 33, 25, 1) 100%);
+}
+
+/* Material Icons settings */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Flow - Choose Date &amp; Participants</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b366",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112119", // Main page bg
+                        "card-dark": "#162820", // Slightly lighter for cards
+                        "border-dark": "#293830",
+                        "text-muted": "#9eb7ab",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #112119;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #293830;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #19b366;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-x-hidden min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 bg-[#111714] border-b border-[#293830]">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 text-white" href="#">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold tracking-tight">TravelApp</h2>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#">Trips</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#">About</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#">ID | EN</a>
+</nav>
+</div>
+<!-- Search & Profile -->
+<div class="flex items-center gap-6">
+<div class="hidden md:block relative group">
+<div class="flex items-center bg-[#293830] rounded-lg focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<span class="material-symbols-outlined text-[#9eb7ab] pl-3">search</span>
+<input class="bg-transparent border-none text-white placeholder-[#9eb7ab] text-sm focus:ring-0 w-48 py-2" placeholder="Search destinations..."/>
+</div>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-[#293830]" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1wSqdJKNp63JPiRS8VIz-HJHxRmTgEeP8XlpoCDWBpvU9t6PL4muCv-pQ2k7Z1oXqgZQ1HkKQJwy8xk49ouh9BAiEDPB_2HiatwMDvqQmNQV_VRHzizJmKXx-kWxJCORpuLyPAJr9etN7LE3dY5N7mRYPvqywcuvWFMneDD6tIC5C0AbU7XAJnpB1Wefac9AQc7Xyb6pneIfzLPaaT2XahWNA9P2VOMp2UUG1Oq1tpeKKO8GN9YGFub-Y9xj7s4IDgoMffSHoiU8");'></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs / Stepper -->
+<div class="mb-8">
+<div class="flex flex-wrap items-center gap-2 text-sm md:text-base">
+<div class="flex items-center gap-2 text-primary font-semibold">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-[#111714] text-xs font-bold">1</span>
+<span>Date &amp; Quantity</span>
+</div>
+<span class="material-symbols-outlined text-[#293830] text-lg">chevron_right</span>
+<div class="flex items-center gap-2 text-[#566860]">
+<span class="flex items-center justify-center w-6 h-6 rounded-full border border-[#566860] text-xs font-bold">2</span>
+<span>Details</span>
+</div>
+<span class="material-symbols-outlined text-[#293830] text-lg">chevron_right</span>
+<div class="flex items-center gap-2 text-[#566860]">
+<span class="flex items-center justify-center w-6 h-6 rounded-full border border-[#566860] text-xs font-bold">3</span>
+<span>Payment</span>
+</div>
+<span class="material-symbols-outlined text-[#293830] text-lg">chevron_right</span>
+<span class="text-[#566860]">Complete</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Selection Area -->
+<div class="lg:col-span-8 flex flex-col gap-10">
+<!-- Trip Header -->
+<div class="space-y-2">
+<div class="flex items-start justify-between">
+<div>
+<span class="inline-block px-3 py-1 mb-3 text-xs font-medium tracking-wider text-primary bg-primary/10 rounded-full border border-primary/20">OPEN TRIP</span>
+<h1 class="text-3xl md:text-4xl font-bold text-white leading-tight">Mount Bromo Sunrise</h1>
+<div class="flex items-center gap-2 mt-2 text-text-muted">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-sm">East Java, Indonesia</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Calendar View -->
+<div class="bg-card-dark rounded-xl border border-border-dark overflow-hidden">
+<div class="p-4 border-b border-border-dark flex items-center justify-between">
+<h3 class="text-white font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                            Availability Calendar
+                        </h3>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:bg-[#293830] rounded text-white transition">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="text-white font-medium text-sm">August 2024</span>
+<button class="p-1 hover:bg-[#293830] rounded text-white transition">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Calendar Grid Wrapper -->
+<div class="p-4">
+<div class="grid grid-cols-7 mb-2">
+<p class="text-[#566860] text-xs font-bold text-center py-2">S</p>
+<p class="text-[#566860] text-xs font-bold text-center py-2">M</p>
+<p class="text-[#566860] text-xs font-bold text-center py-2">T</p>
+<p class="text-[#566860] text-xs font-bold text-center py-2">W</p>
+<p class="text-[#566860] text-xs font-bold text-center py-2">T</p>
+<p class="text-[#566860] text-xs font-bold text-center py-2">F</p>
+<p class="text-[#566860] text-xs font-bold text-center py-2">S</p>
+</div>
+<div class="grid grid-cols-7 gap-y-2 gap-x-1">
+<!-- Example empty cells -->
+<div class="h-10"></div><div class="h-10"></div><div class="h-10"></div>
+<!-- Days -->
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">1</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">2</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">3</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">4</button>
+<!-- Selected Date Example -->
+<button class="h-10 w-full text-[#111714] bg-white font-bold text-sm rounded-lg flex items-center justify-center shadow-lg relative group">
+                                5
+                                <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"></div>
+</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">6</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">7</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">8</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">9</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">10</button>
+<!-- Available but not selected -->
+<button class="h-10 w-full text-primary font-medium text-sm rounded-lg bg-primary/10 hover:bg-primary/20 transition flex items-center justify-center">11</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">12</button>
+<!-- More days... -->
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">13</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">14</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">15</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">16</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">17</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">18</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">19</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">20</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">21</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">22</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">23</button>
+<button class="h-10 w-full text-primary font-medium text-sm rounded-lg bg-primary/10 hover:bg-primary/20 transition flex items-center justify-center">24</button>
+<button class="h-10 w-full text-primary font-medium text-sm rounded-lg bg-primary/10 hover:bg-primary/20 transition flex items-center justify-center">25</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">26</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">27</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">28</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">29</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">30</button>
+<button class="h-10 w-full text-white text-sm rounded-lg hover:bg-[#293830] transition flex items-center justify-center">31</button>
+</div>
+</div>
+</div>
+<!-- Specific Slots Selection -->
+<div>
+<h3 class="text-white font-semibold mb-4 text-lg">Select Available Slot</h3>
+<div class="flex flex-col gap-3" style="--radio-dot-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(255,255,255)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e');">
+<!-- Active Option -->
+<label class="group cursor-pointer relative flex items-center gap-4 rounded-xl border border-primary bg-primary/5 p-4 transition-all hover:bg-primary/10">
+<input checked="" class="h-5 w-5 border-2 border-primary bg-transparent text-primary focus:ring-primary focus:ring-offset-background-dark cursor-pointer" name="slot" type="radio"/>
+<div class="flex grow flex-col sm:flex-row sm:items-center justify-between">
+<div class="flex flex-col">
+<p class="text-white text-base font-medium">Mon, 05 Aug 2024</p>
+<p class="text-primary text-sm font-medium">Filling Fast</p>
+</div>
+<div class="text-right mt-2 sm:mt-0">
+<p class="text-white font-bold">IDR 750k</p>
+<p class="text-text-muted text-sm">4 spots left</p>
+</div>
+</div>
+</label>
+<!-- Option 2 -->
+<label class="group cursor-pointer relative flex items-center gap-4 rounded-xl border border-border-dark bg-card-dark p-4 transition-all hover:border-gray-500">
+<input class="h-5 w-5 border-2 border-border-dark bg-transparent text-primary focus:ring-primary focus:ring-offset-background-dark cursor-pointer" name="slot" type="radio"/>
+<div class="flex grow flex-col sm:flex-row sm:items-center justify-between">
+<div class="flex flex-col">
+<p class="text-white text-base font-medium">Sat, 24 Aug 2024</p>
+<p class="text-text-muted text-sm">Weekend Trip</p>
+</div>
+<div class="text-right mt-2 sm:mt-0">
+<p class="text-white font-bold">IDR 850k</p>
+<p class="text-text-muted text-sm">8 spots left</p>
+</div>
+</div>
+</label>
+<!-- Option 3: Disabled/Full -->
+<label class="group relative flex items-center gap-4 rounded-xl border border-dashed border-border-dark bg-transparent p-4 opacity-50 cursor-not-allowed">
+<input class="h-5 w-5 border-2 border-border-dark bg-transparent text-transparent" disabled="" name="slot" type="radio"/>
+<div class="flex grow flex-col sm:flex-row sm:items-center justify-between">
+<div class="flex flex-col">
+<p class="text-white text-base font-medium">Sun, 25 Aug 2024</p>
+<p class="text-text-muted text-sm">Fully Booked</p>
+</div>
+<div class="text-right mt-2 sm:mt-0">
+<p class="text-white font-bold">IDR 850k</p>
+<p class="text-red-400 text-sm">0 spots left</p>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Quantity Selection -->
+<div class="pt-4 border-t border-border-dark">
+<h3 class="text-white font-semibold mb-4 text-lg">Number of Participants</h3>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card-dark p-5 rounded-xl border border-border-dark">
+<div>
+<p class="text-white font-medium">Adults / Pax</p>
+<p class="text-text-muted text-sm">Age 12+</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-lg border border-border-dark bg-[#111714] text-white hover:border-primary hover:text-primary transition flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/50">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="w-12 text-center bg-transparent border-none text-white text-xl font-bold focus:ring-0 p-0" readonly="" type="text" value="2"/>
+<button class="w-10 h-10 rounded-lg border border-border-dark bg-[#111714] text-white hover:border-primary hover:text-primary transition flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/50">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sticky Summary -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 space-y-4">
+<div class="bg-card-dark border border-border-dark rounded-xl p-6 shadow-xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-lg bg-cover bg-center shrink-0" data-alt="Thumbnail of Mount Bromo sunrise landscape with mist" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCALGxBW49vKcLamux1vWpFz3VEFJJRSJwhY4zTfto6XsxTiqq-vgdxh7qDoUmqtP8_9JY5n2EmWm1bN4Gku-KwTa5SQ6hhDRLMXlipeMfJKzsKyGKNwcleYslCF2vojSO5qTrGLujK2iTsRpkjwBFwOyKQGV5dArLJOtVxyj0QK0aflK-auO0BqtrbCIeLtwLsTrK-DW83AHpjl0b65D4qW9DDMTGCizVbFvBCK7KgIpcpPCfHcVeUYcbUS0e4a2qqxNe62h_Egg4");'></div>
+<div>
+<h4 class="text-white font-bold leading-tight line-clamp-2">Mount Bromo Sunrise Tour</h4>
+<div class="flex items-center gap-1 mt-1 text-xs text-text-muted">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+<span>Mon, 05 Aug 2024</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-sm">
+<span class="text-text-muted">Price per pax</span>
+<span class="text-white">IDR 750.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-text-muted">Quantity</span>
+<span class="text-white">2 Pax</span>
+</div>
+<div class="h-px bg-border-dark my-2"></div>
+<div class="flex justify-between text-base font-medium">
+<span class="text-white">Subtotal</span>
+<span class="text-white">IDR 1.500.000</span>
+</div>
+<div class="flex justify-between text-sm text-primary">
+<span>Service Fee</span>
+<span>Included</span>
+</div>
+</div>
+<div class="flex justify-between items-end mb-6">
+<span class="text-text-muted text-sm font-medium">Total Payment</span>
+<span class="text-2xl font-bold text-primary">IDR 1.500.000</span>
+</div>
+<button class="w-full bg-primary hover:bg-green-600 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-[0_4px_14px_0_rgba(25,179,102,0.39)] hover:shadow-[0_6px_20px_rgba(25,179,102,0.23)] hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+<span>Lanjut / Continue</span>
+<span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+</button>
+<p class="text-xs text-center text-[#566860] mt-4">
+                            Step 1 of 4 • You won't be charged yet
+                        </p>
+</div>
+<!-- Trust Signals -->
+<div class="bg-primary/5 rounded-lg p-4 border border-primary/10 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">verified_user</span>
+<div>
+<p class="text-white text-sm font-medium">Free Cancellation</p>
+<p class="text-text-muted text-xs mt-1">Cancel up to 24 hours before the trip starts for a full refund.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#111714] border-t border-[#293830] mt-auto">
+<div class="max-w-[1280px] mx-auto px-4 py-8 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-bold">TravelApp</span>
+</div>
+<div class="flex gap-6 text-sm text-[#9eb7ab]">
+<a class="hover:text-white transition" href="#">Privacy Policy</a>
+<a class="hover:text-white transition" href="#">Terms of Service</a>
+<a class="hover:text-white transition" href="#">Help Center</a>
+</div>
+<div class="text-[#566860] text-sm">
+                    © 2024 TravelApp Inc.
+                </div>
+</div>
+</div>
+</footer>
+</body></html>

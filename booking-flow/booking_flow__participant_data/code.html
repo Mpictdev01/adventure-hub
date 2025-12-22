@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Flow: Participant Data</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b366",
+                        "primary-hover": "#148f52",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112119",
+                        "surface-dark": "#1d2923", // Slightly lighter than bg-dark for cards
+                        "input-bg": "#293830",
+                        "text-muted": "#9eb7ab",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>/* Custom scrollbar for dark mode */
+::-webkit-scrollbar {
+    width: 8px
+    }
+::-webkit-scrollbar-track {
+    background: #112119
+    }
+::-webkit-scrollbar-thumb {
+    background: #293830;
+    border-radius: 4px
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+/* Checkbox custom style */
+.custom-checkbox:checked {
+    background-color: #19b366;
+    border-color: #19b366;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuB3F5oWmY52IpA1hp1gWUkzPfvxxmYIGxkcVp6Yh9lX71pbCSVh0lavvhvDfbWBtisE9N4Ds6X_FPk7XB7URBS8aZDqgTeVyep_Xy2MysP7ITGYF12qJlpp1x2bSeNKyOp7Z1iaEsENK7pBv7T-rV3YrKuJnKfVN6Lhac2TX8BzxtGBEaFyWtubH3rWBn8utBBuDvhOEX5xP78sDLBTpZXE_g98QiA5SCNZ4llxoWp2h0VaDYt8-m3L4mVhF3iplkoEsZnNynUel2Q)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#293830] bg-background-dark px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">TripBooker</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Trips</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">About</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Contact</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#293830] hover:bg-[#3d5247] transition-colors text-white min-w-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">language</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#293830] hover:bg-[#3d5247] transition-colors text-white min-w-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout-container flex h-full grow flex-col">
+<div class="w-full flex flex-1 justify-center py-8 px-4 sm:px-8">
+<div class="layout-content-container flex flex-col lg:flex-row gap-8 w-full max-w-[1200px] flex-1">
+<!-- Left Column: Main Form Area -->
+<div class="flex flex-col flex-1 gap-8">
+<!-- Step Indicator & Heading -->
+<div class="flex flex-col gap-4">
+<!-- Breadcrumb / Steps -->
+<div class="flex items-center justify-between">
+<p class="text-primary text-sm font-bold tracking-wider uppercase">Step 2 of 4</p>
+<span class="text-text-muted text-sm hidden sm:block">Detailed Information</span>
+</div>
+<!-- Progress Bar -->
+<div class="rounded-full bg-[#293830] h-2 w-full overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 50%;"></div>
+</div>
+<!-- Title -->
+<div class="mt-2">
+<h1 class="text-white text-3xl md:text-4xl font-bold leading-tight">Data Pemesanan</h1>
+<p class="text-text-muted text-base font-normal leading-normal mt-2">
+                                    Mohon isi detail untuk pemesan utama dan semua peserta. <br/>
+<span class="italic text-sm opacity-80">Please fill in the details for the main booker and all participants.</span>
+</p>
+</div>
+</div>
+<!-- Main Booker Form -->
+<section class="flex flex-col gap-6 rounded-2xl bg-surface-dark p-6 md:p-8 border border-[#293830]">
+<div class="flex items-center gap-3 border-b border-[#293830] pb-4">
+<span class="material-symbols-outlined text-primary">badge</span>
+<h2 class="text-white text-xl font-bold leading-tight">Pemesan Utama <span class="text-base font-normal text-text-muted">(Main Booker)</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Nama Lengkap (Full Name)</span>
+<input class="w-full rounded-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Sesuai KTP / As per ID Card" type="text"/>
+</label>
+<!-- NIK -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Nomor Identitas (NIK/ID Number)</span>
+<input class="w-full rounded-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="16 digit NIK" type="number"/>
+</label>
+<!-- Email -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Alamat Email (Email Address)</span>
+<input class="w-full rounded-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="example@email.com" type="email"/>
+</label>
+<!-- WhatsApp -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Nomor WhatsApp (WhatsApp Number)</span>
+<div class="flex">
+<div class="flex items-center justify-center bg-input-bg border-r border-[#3d5247] rounded-l-lg px-3 text-text-muted">
+                                            +62
+                                        </div>
+<input class="w-full rounded-r-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="812-3456-7890" type="tel"/>
+</div>
+</label>
+<!-- Emergency Contact Name -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Kontak Darurat (Emergency Contact Name)</span>
+<input class="w-full rounded-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Nama Kerabat / Relative Name" type="text"/>
+</label>
+<!-- Emergency Contact Number -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">No. Kontak Darurat (Emergency Number)</span>
+<div class="flex">
+<div class="flex items-center justify-center bg-input-bg border-r border-[#3d5247] rounded-l-lg px-3 text-text-muted">
+                                            +62
+                                        </div>
+<input class="w-full rounded-r-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="812-xxxx-xxxx" type="tel"/>
+</div>
+</label>
+</div>
+</section>
+<!-- Participant 1 Form -->
+<section class="flex flex-col gap-6 rounded-2xl bg-surface-dark p-6 md:p-8 border border-[#293830]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#293830] pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h2 class="text-white text-xl font-bold leading-tight">Peserta 1 <span class="text-base font-normal text-text-muted">(Participant 1)</span></h2>
+</div>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="custom-checkbox h-5 w-5 rounded border-gray-600 bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 transition duration-150 ease-in-out" type="checkbox"/>
+<span class="text-sm text-text-muted group-hover:text-white transition-colors">Sama dengan Pemesan Utama</span>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<label class="flex flex-col gap-2 md:col-span-2">
+<span class="text-white text-sm font-medium">Nama Lengkap (Full Name)</span>
+<input class="w-full rounded-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Sesuai KTP / As per ID Card" type="text"/>
+</label>
+<!-- NIK -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Nomor Identitas (NIK/ID Number)</span>
+<input class="w-full rounded-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="16 digit NIK" type="number"/>
+</label>
+<!-- Phone Number -->
+<label class="flex flex-col gap-2">
+<span class="text-white text-sm font-medium">Nomor Telepon (Phone Number)</span>
+<div class="flex">
+<div class="flex items-center justify-center bg-input-bg border-r border-[#3d5247] rounded-l-lg px-3 text-text-muted">
+                                            +62
+                                        </div>
+<input class="w-full rounded-r-lg border-none bg-input-bg p-4 text-white placeholder-text-muted focus:ring-2 focus:ring-primary focus:outline-none" placeholder="812-3456-7890" type="tel"/>
+</div>
+</label>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex items-center justify-between pt-4 pb-12">
+<button class="flex items-center gap-2 px-8 py-3 rounded-xl border border-[#3d5247] text-white font-medium hover:bg-[#293830] transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                                Kembali
+                            </button>
+<button class="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all hover:translate-y-[-2px]">
+                                Lanjut
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Trip Summary Sidebar -->
+<div class="w-full lg:w-[360px] flex flex-col gap-6 shrink-0">
+<div class="sticky top-24 flex flex-col gap-4">
+<div class="rounded-2xl bg-surface-dark border border-[#293830] overflow-hidden shadow-xl">
+<!-- Trip Image -->
+<div class="h-48 w-full relative bg-gray-800">
+<img alt="Misty mountain landscape view" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" data-alt="Misty mountain landscape view with lush green trees" data-location="Mount Bromo, Indonesia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdHKredIeSsOhEYBpz49rzSbMmS-4tX9GByMIfMg8SW-0_k3iZvZ0KQ5SM_-3CejKYCB6C0uEvXFpxX2LI5EH3I89iknxmt0Le729B_3F-pWjDzlbglOjy3s_Vekng4jGJsTEz72Q_GgHRnXlNhHQ51ua6aGWDqJcYw2mQf_hq9FSSZIgu6EfpHl86dvPGWP1jOu-kK9xVEpQQ67StTzyiVKlHmKUDmu8kvokyNWLCNd2O9Jt06iUruG5-hJD2CjYTvwwQirM2hFE"/>
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pt-12">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block">Open Trip</span>
+<h3 class="text-white text-lg font-bold">Bromo Midnight Adventure</h3>
+</div>
+</div>
+<!-- Trip Details -->
+<div class="p-6 flex flex-col gap-4">
+<div class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-primary mt-0.5">calendar_month</span>
+<div class="flex flex-col">
+<span class="text-text-muted">Tanggal (Date)</span>
+<span class="text-white font-medium">12 - 13 Agustus 2024</span>
+</div>
+</div>
+<div class="flex items-start gap-3 text-sm">
+<span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
+<div class="flex flex-col">
+<span class="text-text-muted">Meeting Point</span>
+<span class="text-white font-medium">Malang Kota Station</span>
+</div>
+</div>
+<div class="h-px bg-[#293830] my-2"></div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-text-muted">Peserta (Pax)</span>
+<span class="text-white font-medium">2 Orang</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-text-muted">Harga / Pax</span>
+<span class="text-white font-medium">IDR 350.000</span>
+</div>
+<div class="h-px bg-[#293830] my-2"></div>
+<div class="flex justify-between items-end">
+<span class="text-white text-sm font-medium">Total Price</span>
+<span class="text-primary text-xl font-bold">IDR 700.000</span>
+</div>
+</div>
+</div>
+<!-- Support Widget -->
+<div class="rounded-xl bg-[#1a2e24] p-4 flex items-center gap-4 border border-[#293830]">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white text-sm font-bold">Butuh Bantuan?</span>
+<a class="text-text-muted text-xs hover:text-white transition-colors" href="#">Hubungi CS via WhatsApp</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Simple Footer -->
+<footer class="border-t border-[#293830] bg-[#111714] py-8 px-10 text-center">
+<p class="text-text-muted text-sm">© 2024 TripBooker. All rights reserved.</p>
+<div class="flex justify-center gap-6 mt-4">
+<a class="text-text-muted hover:text-white text-sm" href="#">Privacy Policy</a>
+<a class="text-text-muted hover:text-white text-sm" href="#">Terms of Service</a>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

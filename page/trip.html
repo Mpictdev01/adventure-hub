@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trip Catalog - Adventure Hub</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b366",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#111714",
+                        "surface-dark": "#1c2621",
+                        "border-dark": "#3d5247",
+                        "text-secondary": "#9eb7ab",
+                        "accent-dark": "#293830"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Noto Sans", "sans-serif"],
+                        "body": ["Inter", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', "Noto Sans", sans-serif;
+            background-color: #111714;
+        }
+        /* Hide scrollbar for clean look in horizontal scrolls if any */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen w-full bg-[#111714] text-white overflow-x-hidden">
+<!-- Navbar -->
+<div class="border-b border-solid border-b-[#293830] bg-[#111714] sticky top-0 z-50">
+<div class="flex items-center justify-between px-4 md:px-10 py-3 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-4 md:gap-8 flex-1">
+<a class="flex items-center gap-3 text-white" href="#">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">Adventure Hub</h2>
+</a>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#9eb7ab] flex border-none bg-[#293830] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#293830] focus:border-none h-full placeholder:text-[#9eb7ab] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search trips..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-end gap-4 md:gap-8">
+<div class="hidden lg:flex items-center gap-6 xl:gap-9">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Trips</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contact</a>
+<div class="h-4 w-[1px] bg-[#3d5247]"></div>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">ID/EN</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#19b366] hover:bg-[#148f52] transition-colors text-[#111714] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Login</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#293830] hover:bg-[#3d5247] transition-colors text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Header Hero -->
+<div class="w-full bg-[#111714]">
+<div class="max-w-[1440px] mx-auto px-4 md:px-10 py-6">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[220px] md:min-h-[280px] relative group" data-alt="Panoramic view of a misty mountain range at sunrise with hikers silhouetted in the distance" style='background-image: linear-gradient(0deg, rgba(17, 23, 20, 0.8) 0%, rgba(17, 23, 20, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBK0LJSlAADy6_CRxNyQIR4WqLZaP8tR2F2QOqUxYTdE0F5aJmM34yyXggM9vRtwjd5KlbHeoavDIl-gFFw0fVD5723fs9sPqlrRbJo3lODlnoFzn4EKzv90GuHh4fUuRXSB-_Ihv_CBGMq8o6IZgbXb6R26ppQvD4oyIGtp61Jx_Nzyip3JidWDMqefaLzAhDWNo1fyY3q7TZ9fXAC80fZG0F4DoLTFwOST6uaLGaRpbArnB99edclO7YeorRNO_1Lo1ekU6xAwmk");'>
+<div class="flex flex-col p-6 md:p-10 z-10">
+<h1 class="text-white tracking-light text-3xl md:text-5xl font-bold leading-tight mb-2">Find Your Next Summit</h1>
+<p class="text-[#9eb7ab] text-lg max-w-2xl">Discover open and private trips to Indonesia's most breathtaking mountains.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Layout -->
+<div class="max-w-[1440px] mx-auto px-4 md:px-10 py-6 flex flex-col lg:flex-row gap-8">
+<!-- Left Sidebar (Filters) -->
+<aside class="w-full lg:w-[280px] flex-shrink-0 flex flex-col gap-6">
+<!-- Mobile Filter Toggle (Visible only on small screens) -->
+<div class="lg:hidden flex justify-between items-center bg-[#1c2621] p-4 rounded-lg border border-[#3d5247]">
+<span class="font-bold">Filters</span>
+<span class="material-symbols-outlined">filter_list</span>
+</div>
+<!-- Desktop Filter Content (Always visible on LG, hidden on mobile for brevity in this demo unless toggled) -->
+<div class="flex flex-col gap-6">
+<!-- Search within filters -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold text-white">Search Destination</label>
+<div class="flex w-full items-stretch rounded-lg">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#3d5247] bg-[#1c2621] h-11 placeholder:text-[#9eb7ab] px-3 text-sm font-normal leading-normal" placeholder="Ex: Rinjani, Semeru..." value=""/>
+</div>
+</div>
+<!-- Action Panel / Clear Filters -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<p class="text-white text-base font-bold leading-tight">Filters</p>
+</div>
+<button class="text-primary text-sm font-medium hover:underline">
+                        Clear All
+                    </button>
+</div>
+<!-- Accordions -->
+<div class="flex flex-col gap-3">
+<!-- Trip Type -->
+<details class="group rounded-lg bg-[#1c2621] border border-[#3d5247] open:bg-[#1c2621]" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 px-4 py-3 select-none">
+<p class="text-white text-sm font-bold">Trip Type</p>
+<span class="material-symbols-outlined text-white group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-1 flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Open Trip</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Private Trip</span>
+</label>
+</div>
+</details>
+<!-- Difficulty Level -->
+<details class="group rounded-lg bg-[#1c2621] border border-[#3d5247]" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 px-4 py-3 select-none">
+<p class="text-white text-sm font-bold">Difficulty Level</p>
+<span class="material-symbols-outlined text-white group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-1 flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Beginner (Pemula)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Intermediate (Menengah)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Expert (Ahli)</span>
+</label>
+</div>
+</details>
+<!-- Destination -->
+<details class="group rounded-lg bg-[#1c2621] border border-[#3d5247]">
+<summary class="flex cursor-pointer items-center justify-between gap-6 px-4 py-3 select-none">
+<p class="text-white text-sm font-bold">Mountain</p>
+<span class="material-symbols-outlined text-white group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-1 flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Rinjani</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Semeru</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Kerinci</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="form-checkbox rounded border-[#3d5247] bg-[#293830] text-primary focus:ring-0 focus:ring-offset-0 size-4" type="checkbox"/>
+<span class="text-[#9eb7ab] text-sm group-hover/item:text-white transition-colors">Prau</span>
+</label>
+</div>
+</details>
+</div>
+<!-- Price Range Simple -->
+<div class="flex flex-col gap-3 p-4 rounded-lg border border-[#3d5247] bg-[#1c2621]">
+<p class="text-white text-sm font-bold">Price Range</p>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<span class="absolute left-3 top-2.5 text-[#9eb7ab] text-xs">IDR</span>
+<input class="w-full bg-[#293830] border-none rounded text-white text-sm pl-10 py-2 focus:ring-1 focus:ring-primary" placeholder="Min" type="text"/>
+</div>
+<span class="text-[#9eb7ab]">-</span>
+<div class="relative flex-1">
+<span class="absolute left-3 top-2.5 text-[#9eb7ab] text-xs">IDR</span>
+<input class="w-full bg-[#293830] border-none rounded text-white text-sm pl-10 py-2 focus:ring-1 focus:ring-primary" placeholder="Max" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Content (Grid) -->
+<main class="flex-1 flex flex-col gap-6">
+<!-- Sorting / Results Count -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<p class="text-white text-base font-medium"><span class="font-bold">12</span> Trips Found</p>
+<div class="flex items-center gap-2">
+<span class="text-[#9eb7ab] text-sm">Sort by:</span>
+<select class="bg-[#1c2621] border border-[#3d5247] text-white text-sm rounded-lg focus:ring-primary focus:border-primary p-2">
+<option>Recommended</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Duration</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group flex flex-col bg-[#1c2621] border border-[#3d5247] rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Mount Rinjani crater lake with clouds" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0nwAxFTLL6L-1MjazUniQQ7OAe92nAQnPn94b7OaUsrpaGrmN8RYZpqStH8qvvsYwyQyhUNSyvz4OxtWFD9I_pfPdI4Q4Y9gnvTCHxQxul_eKY5_usGM3OglepEcwWF5_Ad6hRQEk-D897ANmBfORu714V4OEZfnLMCfQENviJirFunOeEPRgN7pFOVcCu5j1G_jx4Ig7FxBfuULEh2SPQJsjeF16lkMFMq0xQBK1liChY4mhQlYSmC75lbkqat2ihdrnHOG_eRs"/>
+<div class="absolute top-3 right-3 bg-primary text-[#111714] text-xs font-bold px-2.5 py-1 rounded-full">
+                            Open Trip
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Mt. Rinjani Summit</h3>
+<div class="flex items-center gap-1 text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px] fill">star</span>
+<span class="text-xs font-bold text-white">4.8</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 text-sm text-[#9eb7ab]">
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span>Expert</span>
+</div>
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>4D 3N</span>
+</div>
+</div>
+<div class="mt-auto pt-3 flex flex-col gap-3">
+<div>
+<p class="text-[#9eb7ab] text-xs">Starting from</p>
+<p class="text-primary font-bold text-xl">IDR 2.500.000<span class="text-xs font-normal text-[#9eb7ab] ml-1">/pax</span></p>
+</div>
+<button class="w-full py-2 bg-[#293830] hover:bg-primary hover:text-[#111714] text-white font-bold rounded-lg transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex flex-col bg-[#1c2621] border border-[#3d5247] rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Active volcano smoking under a starry sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp3mlwsdLzWyEsgb65l9yoSwnbPb4IoPerj1D4u6-1mYuguFHPvk1gFcQn1UZBiA86wANolATDqiZD3cbHksD38WQiDqVeurHqubp_m9bal34YlMnOYq1kpv2UQ74nP3aipDxrGgG4NV8-xBcARRhpBufcNJ36oRRvlSs7ZyzrpSbYH21oug85dVulOIp-1ny3ky1aG6bW-VXTUedv-WeGZ67SpCeKzmSGU4c-GUjAFRoBRw4LW6mb77G9LqX5S1o1I-XFleHvWQY"/>
+<div class="absolute top-3 right-3 bg-white text-[#111714] text-xs font-bold px-2.5 py-1 rounded-full">
+                            Private Trip
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Mt. Semeru Trek</h3>
+<div class="flex items-center gap-1 text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px] fill">star</span>
+<span class="text-xs font-bold text-white">4.9</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 text-sm text-[#9eb7ab]">
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span>Expert</span>
+</div>
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>3D 2N</span>
+</div>
+</div>
+<div class="mt-auto pt-3 flex flex-col gap-3">
+<div>
+<p class="text-[#9eb7ab] text-xs">Starting from</p>
+<p class="text-primary font-bold text-xl">IDR 3.200.000<span class="text-xs font-normal text-[#9eb7ab] ml-1">/pax</span></p>
+</div>
+<button class="w-full py-2 bg-[#293830] hover:bg-primary hover:text-[#111714] text-white font-bold rounded-lg transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group flex flex-col bg-[#1c2621] border border-[#3d5247] rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Green lush hills of Mount Merbabu with clouds" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtHb5HpUQGBhQKjNpv2hic__R3fwlFAMOU8L8_9zQ7ldB02foEw8-pA_xcgs714QF9ik3SOQrnUeoLDzbXWQ29f-4f-2TAUL4MIB9xsgN85Pp4Zh5Mh_mW8RQbqunKZt-biXjZmi85EL-l_UeyHOdZqZo2x1TTwtDtcefrHX3oGXYMqmzJ_hwX0MjxKVJW9-11K23wq9P2N-9efzrKUMt2kSDJFao5J0iU5m-9DzQ_Jw69k4VSU1XLapKJZEHMfM_l5h04JsyLjj8"/>
+<div class="absolute top-3 right-3 bg-primary text-[#111714] text-xs font-bold px-2.5 py-1 rounded-full">
+                            Open Trip
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Mt. Merbabu Hike</h3>
+<div class="flex items-center gap-1 text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px] fill">star</span>
+<span class="text-xs font-bold text-white">4.7</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 text-sm text-[#9eb7ab]">
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span>Intermediate</span>
+</div>
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>2D 1N</span>
+</div>
+</div>
+<div class="mt-auto pt-3 flex flex-col gap-3">
+<div>
+<p class="text-[#9eb7ab] text-xs">Starting from</p>
+<p class="text-primary font-bold text-xl">IDR 850.000<span class="text-xs font-normal text-[#9eb7ab] ml-1">/pax</span></p>
+</div>
+<button class="w-full py-2 bg-[#293830] hover:bg-primary hover:text-[#111714] text-white font-bold rounded-lg transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group flex flex-col bg-[#1c2621] border border-[#3d5247] rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Sunrise view over Mount Bromo landscape with fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Ecx4c2MKAmtowtgjqZBxa_CVS8kf48le53PY9yVf_MMGpXSe7dzw6RxC2fGtGxTERbgLhZKzV1HSTI5-ZYzwhnXKsfXbZ10jaVynnDLeMZCsp-JmMmjPkipjvnsU4rQLDMVsq17qjDe5onDe26wL9CtZ6SWXP422kVV1mygcfWX3gKIqlrhZYIYgjYmee9VT4sKDjv2uKNiDhKS2ZOwPCcxhgP1OAeQCBVUs7VR5gqXP_V7gB6fCC7s-gQCWRSGeFUC6T4L3CTQ"/>
+<div class="absolute top-3 right-3 bg-white text-[#111714] text-xs font-bold px-2.5 py-1 rounded-full">
+                            Private Trip
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Bromo Sunrise</h3>
+<div class="flex items-center gap-1 text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px] fill">star</span>
+<span class="text-xs font-bold text-white">4.9</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 text-sm text-[#9eb7ab]">
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span>Beginner</span>
+</div>
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>1D 0N</span>
+</div>
+</div>
+<div class="mt-auto pt-3 flex flex-col gap-3">
+<div>
+<p class="text-[#9eb7ab] text-xs">Starting from</p>
+<p class="text-primary font-bold text-xl">IDR 1.200.000<span class="text-xs font-normal text-[#9eb7ab] ml-1">/pax</span></p>
+</div>
+<button class="w-full py-2 bg-[#293830] hover:bg-primary hover:text-[#111714] text-white font-bold rounded-lg transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group flex flex-col bg-[#1c2621] border border-[#3d5247] rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Golden sunrise over the rolling hills of Mount Prau" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZLIG_ylSxSzCasIlsnKEynycHCstK8fnghk69IqzGuWpF8DnKnREMcLJ92-QfhmhHzx2GEd9BjvLs3c62vhWrBl13cNK6jkrjTVViKrN-3-MD6JXn9rnL9Brbd2IcQIm5FhACs3S5SbPhuImdhPiLDU78KiryS8hNWRpPv1txWzCa4i-o0IVu0ill_-tw1LuP2un88vu8cKx4J3WB9PpAo9lt5zsApVLyOcZ2szqWoK1CtRHtOnhByBq2mppttklyuuOU68vrdNc"/>
+<div class="absolute top-3 right-3 bg-primary text-[#111714] text-xs font-bold px-2.5 py-1 rounded-full">
+                            Open Trip
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Mt. Prau Camping</h3>
+<div class="flex items-center gap-1 text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px] fill">star</span>
+<span class="text-xs font-bold text-white">4.8</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 text-sm text-[#9eb7ab]">
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span>Beginner</span>
+</div>
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>2D 1N</span>
+</div>
+</div>
+<div class="mt-auto pt-3 flex flex-col gap-3">
+<div>
+<p class="text-[#9eb7ab] text-xs">Starting from</p>
+<p class="text-primary font-bold text-xl">IDR 750.000<span class="text-xs font-normal text-[#9eb7ab] ml-1">/pax</span></p>
+</div>
+<button class="w-full py-2 bg-[#293830] hover:bg-primary hover:text-[#111714] text-white font-bold rounded-lg transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group flex flex-col bg-[#1c2621] border border-[#3d5247] rounded-xl overflow-hidden hover:border-primary transition-colors duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Blue fire and sulfur lake of Ijen Crater" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtdF1XsH_M-1tSAWQv9Whwk1cewt2Cv_7rF_sRSoeSBTIcQAZL7ApopRDA2V7scJIDJY-xWzhThN7mBB-i4M41yvwgDQEORW4K_UOGcPCtnpu2us472nyBqxTCofsYj5l7vKt8_Iq0JJli5nBNTbsxvKigUHxMVDNIzQCEdGKXGi3eE4jSCaABvpbBR3RN8DLHQGCyvjscLsIwJmr46l2dCWV9kLchvH7_sg3kgs2koEnE0RGEONW-JggjCAtqWzgzRPsYMnVhvmE"/>
+<div class="absolute top-3 right-3 bg-primary text-[#111714] text-xs font-bold px-2.5 py-1 rounded-full">
+                            Open Trip
+                        </div>
+</div>
+<div class="p-4 flex flex-col flex-1 gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Ijen Blue Fire</h3>
+<div class="flex items-center gap-1 text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px] fill">star</span>
+<span class="text-xs font-bold text-white">4.6</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 text-sm text-[#9eb7ab]">
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span>Intermediate</span>
+</div>
+<div class="flex items-center gap-1 bg-[#293830] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>1D 1N</span>
+</div>
+</div>
+<div class="mt-auto pt-3 flex flex-col gap-3">
+<div>
+<p class="text-[#9eb7ab] text-xs">Starting from</p>
+<p class="text-primary font-bold text-xl">IDR 600.000<span class="text-xs font-normal text-[#9eb7ab] ml-1">/pax</span></p>
+</div>
+<button class="w-full py-2 bg-[#293830] hover:bg-primary hover:text-[#111714] text-white font-bold rounded-lg transition-all duration-300">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center mt-8">
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#3d5247] text-[#9eb7ab] hover:text-white hover:bg-[#293830]">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg bg-primary text-[#111714] font-bold">1</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#3d5247] text-white hover:bg-[#293830]">2</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#3d5247] text-white hover:bg-[#293830]">3</button>
+<span class="flex items-center justify-center text-[#9eb7ab] px-2">...</span>
+<button class="size-10 flex items-center justify-center rounded-lg border border-[#3d5247] text-[#9eb7ab] hover:text-white hover:bg-[#293830]">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="border-t border-[#293830] bg-[#111714] mt-10">
+<div class="max-w-[1440px] mx-auto px-4 md:px-10 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<div class="flex items-center gap-2 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold">Adventure Hub</h2>
+</div>
+<p class="text-[#9eb7ab] text-sm leading-relaxed">Your trusted partner for exploring the hidden gems of Indonesia. Safe, reliable, and unforgettable.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-white font-bold mb-1">Company</h4>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">About Us</a>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Our Team</a>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Blog</a>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Careers</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-white font-bold mb-1">Support</h4>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#9eb7ab] text-sm hover:text-primary transition-colors" href="#">Payment Methods</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-white font-bold mb-1">Contact</h4>
+<p class="text-[#9eb7ab] text-sm">Jakarta, Indonesia</p>
+<p class="text-[#9eb7ab] text-sm">support@adventurehub.id</p>
+<div class="flex gap-4 mt-2">
+<a class="text-white hover:text-primary" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-white hover:text-primary" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+</div>
+<div class="border-t border-[#293830] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[#9eb7ab] text-xs">© 2023 Adventure Hub. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="text-[#9eb7ab] text-xs">ID / EN</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- WhatsApp Floating Action Button -->
+<a aria-label="Contact on WhatsApp" class="fixed bottom-6 right-6 size-14 bg-primary hover:bg-[#148f52] rounded-full shadow-lg flex items-center justify-center text-[#111714] z-50 transition-all hover:scale-110" href="#">
+<svg class="bi bi-whatsapp" fill="currentColor" height="28" viewbox="0 0 16 16" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path>
+</svg>
+</a>
+</body></html>

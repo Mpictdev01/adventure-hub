@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Flow: Payment - TravelApp</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Config -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#19b366",
+              "primary-hover": "#148f52",
+              "background-light": "#f6f8f7",
+              "background-dark": "#111714",
+              "surface-dark": "#1c2621",
+              "border-dark": "#293830",
+              "text-secondary": "#9eb7ab",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>body {
+    font-family: "Inter", sans-serif
+    }
+.radio-dot-svg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCymkaXMWk-HGVXgMHlm-rPSTF054gbygA7p5ireZQcwoGryU_RQDCjq-BBVQaqma3qD2RlBapa6YPeoT7VIzdSmD1eQ0g4dlZxThVARoZAvVyaAwWu-jQgfnmERoV8JWkERof9QS_gQNBQ8y23YLcJlxXzh4UQNvDLQdc9PN1Y5JF9-2LTKqsA3zJC4JHayJu8wxcH3Ys7sajq5dFk7OOzU59Nk1FzkoODLaPdHcVGEpcq9iEMrDNKQXJLxlFTqRCTNk2MGpUDVJI)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-border-dark px-6 py-4 lg:px-10 bg-white dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-2xl">travel_explore</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">TravelApp</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Trips</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Private</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<div class="flex gap-4 items-center">
+<div class="size-8 rounded-full bg-surface-dark overflow-hidden border border-border-dark relative">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb3DWxdxUGnqku6yFHSuIqLBZ1I0IKDfT5CBHXpumAWPYND8ZjQwDuW-H_zkqvuc59JHWLVq2mnZMMI2nY5-pshtBLArtZzF8cRIaYNVhNoZrwznepFW0yf0iLyMRxr5CnkG1OAqWqij_qseKKZisZ8aHOkmkgZhadn1S8BlwzocXVWwm4eQ8MhtWwLvaVNhnvobn9rw7kSpGIpz2qSxxGjVYzk0rQ3R-whOghfrRs15P8zQ_OHKpdmjhoZOHqaLbmHmVciB7LE1I"/>
+</div>
+</div>
+</div>
+<div class="lg:hidden">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 lg:px-10 py-8">
+<!-- Step Indicator -->
+<div class="mb-8 max-w-[800px]">
+<div class="flex gap-6 justify-between mb-2">
+<p class="text-slate-900 dark:text-white text-base font-medium leading-normal">Step 4 of 4: Payment</p>
+</div>
+<div class="rounded-full bg-gray-200 dark:bg-[#3d5247] h-2 w-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 100%;"></div>
+</div>
+<p class="text-slate-500 dark:text-text-secondary text-sm font-normal leading-normal mt-2">Final Step</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+<!-- Left Column: Payment Methods -->
+<div class="flex-1 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-black leading-tight tracking-[-0.033em]">Selesaikan Pembayaran</h1>
+<p class="text-slate-500 dark:text-text-secondary text-base font-normal">Pilih metode pembayaran yang Anda inginkan di bawah ini.</p>
+</div>
+<!-- Payment Selection -->
+<div class="flex flex-col gap-4">
+<!-- Section: Automated Gateway -->
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-text-secondary mb-1">Payment Gateway (Otomatis)</p>
+<label class="group relative flex items-start gap-4 rounded-xl border border-gray-200 dark:border-border-dark p-4 cursor-pointer hover:border-primary/50 transition-colors bg-white dark:bg-surface-dark">
+<input class="mt-1 h-5 w-5 border-2 border-slate-300 dark:border-[#3d5247] bg-transparent text-transparent checked:border-primary checked:bg-primary checked:bg-[image:--radio-dot-svg] focus:ring-0 focus:ring-offset-0" name="payment_method" type="radio"/>
+<div class="flex flex-1 items-center justify-between">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">BCA Virtual Account</span>
+<span class="text-slate-500 dark:text-text-secondary text-sm">Cek otomatis</span>
+</div>
+<div class="h-6 w-10 bg-white rounded flex items-center justify-center p-1">
+<img alt="BCA" class="h-full w-auto object-contain" data-alt="BCA logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW-USrDaed7LJclF3mkVLhziK5h_HVVNb4s-vbglMnSEW1mAh7lCFHLpBUfVx8A4yUgX_1AAs10o0uwZRDeKeDhmZ6aEqVPcbFr03Q5-X4oga0MArDQltHw1hVvfBYjm70F48bUzp8DLGfnEAuuo22BOQe2jE3J30p31ELIvoTKLTr9QeTgEqx6jSD7AyznbTwd5gBTT23YiOWLFxzAmSk6x7dVs_z__palhA978jG8x2qI6Gti1SsMMMta6opZ2n4seSZobg-JiE"/>
+</div>
+</div>
+</label>
+<label class="group relative flex items-start gap-4 rounded-xl border border-gray-200 dark:border-border-dark p-4 cursor-pointer hover:border-primary/50 transition-colors bg-white dark:bg-surface-dark">
+<input class="mt-1 h-5 w-5 border-2 border-slate-300 dark:border-[#3d5247] bg-transparent text-transparent checked:border-primary checked:bg-primary checked:bg-[image:--radio-dot-svg] focus:ring-0 focus:ring-offset-0" name="payment_method" type="radio"/>
+<div class="flex flex-1 items-center justify-between">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">Mandiri Virtual Account</span>
+<span class="text-slate-500 dark:text-text-secondary text-sm">Cek otomatis</span>
+</div>
+<div class="h-6 w-10 bg-white rounded flex items-center justify-center p-1">
+<img alt="Mandiri" class="h-full w-auto object-contain" data-alt="Mandiri logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwhjq4APyzfNBzlKNxLzZWJ561YS1HsVbYniu0XoCOcx9m3eI0ltpFLePC5iN8aqAOzk7Rwb_l-CJ_hQJ7oQ0MF1cL76mBf5FdKU8qvqm1oHYKNxR6eue56j88RspKjyOGpCyJf87-97KPbdgVgw88EXksc1r2ENbplc9eTy-DH-YZz6HrMjDE1QB3Pnh8bps8_Xeo_Y6EVhSV3g3G-3e_uc4f337xg_D1AT6jYbryThUWDxUHoAUJ_3v35FWC2uQOtSDl2S4CodY"/>
+</div>
+</div>
+</label>
+<label class="group relative flex items-start gap-4 rounded-xl border border-gray-200 dark:border-border-dark p-4 cursor-pointer hover:border-primary/50 transition-colors bg-white dark:bg-surface-dark">
+<input class="mt-1 h-5 w-5 border-2 border-slate-300 dark:border-[#3d5247] bg-transparent text-transparent checked:border-primary checked:bg-primary checked:bg-[image:--radio-dot-svg] focus:ring-0 focus:ring-offset-0" name="payment_method" type="radio"/>
+<div class="flex flex-1 items-center justify-between">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">QRIS</span>
+<span class="text-slate-500 dark:text-text-secondary text-sm">Scan QR code</span>
+</div>
+<div class="h-6 w-10 bg-white rounded flex items-center justify-center p-1">
+<img alt="QRIS" class="h-full w-auto object-contain" data-alt="QRIS logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuHnexLIBKSyrBbhlkr-Q6THG64XY_DYprPjlotT7hu6hDQWrbrH_D9_rEnufomJqqW0VkC3ekPRNCmQnjb68bKlE3VuH9p_jlwyvgZQO2G2mXC-cePa_4AyM-6Yr1mgcbYA7JQ5adh1MVniadh06cO4VkofQLihUGfYCYssT7Q-5gXKAbb5xMKlFCt6_HbmyUTFN5hvVL0xcISMnwr7cS00iQp9AlT1GYRS_b10nD6Jrn4AlESP2EZjh5_ClHrdMmK5a_m0vTOlY"/>
+</div>
+</div>
+</label>
+</div>
+<!-- Section: Manual Transfer -->
+<div class="flex flex-col gap-3 mt-4">
+<p class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-text-secondary mb-1">Transfer Manual</p>
+<label class="group relative flex flex-col rounded-xl border-2 border-primary bg-white dark:bg-surface-dark overflow-hidden transition-all">
+<!-- Radio Header -->
+<div class="flex items-start gap-4 p-4 cursor-pointer">
+<input checked="" class="mt-1 h-5 w-5 border-2 border-slate-300 dark:border-[#3d5247] bg-transparent text-transparent checked:border-primary checked:bg-primary checked:bg-[image:--radio-dot-svg] focus:ring-0 focus:ring-offset-0" name="payment_method" type="radio"/>
+<div class="flex flex-1 items-center justify-between">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-medium">Bank Transfer (Manual)</span>
+<span class="text-slate-500 dark:text-text-secondary text-sm">Upload bukti transfer</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">account_balance</span>
+</div>
+</div>
+<!-- Expanded Content for Manual Transfer -->
+<div class="px-4 pb-6 pt-2 pl-12 flex flex-col gap-6 border-t border-dashed border-border-dark/50">
+<div class="bg-background-light dark:bg-background-dark p-4 rounded-lg flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs text-text-secondary uppercase tracking-wider mb-1">Bank Destination</p>
+<p class="text-lg font-bold">BCA</p>
+</div>
+<img alt="BCA" class="h-6 w-auto" data-alt="BCA Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgz1ZR3JUv81u7Mz40bOSmKWoM9VATsugqu60-wcGN8qvD7EWObYLNrpt9x96dHh3RtHQ_TN3xc4aEAzMomXpikrmB1jy-TgQSFFVQAuu7IJtePmxGN2n-L3tnTLsz6ShnSDkXMkwoMnaDUKrKZ-TsZeUVMWIy4JxOSc6dtV0hFEvhYUH-1AvPczpbPs_QM7zHii6ejLvJdHDh3nwk9ZVXnRjBaXWDAWUaLloyA578sHDkn6K87OJamzOZGKke48_IdPOKTf0PKxg"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs text-text-secondary uppercase tracking-wider mb-1">Account Number</p>
+<div class="flex items-center gap-2">
+<p class="text-xl font-mono text-primary font-bold tracking-wide">123 456 7890</p>
+<button class="text-text-secondary hover:text-white transition-colors" title="Copy">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+</button>
+</div>
+<p class="text-sm text-text-secondary mt-1">a.n. PT Travel App Indonesia</p>
+</div>
+</div>
+</div>
+<div>
+<p class="text-sm font-medium mb-2">Upload Bukti Transfer</p>
+<div class="border-2 border-dashed border-gray-300 dark:border-border-dark hover:border-primary hover:bg-surface-dark/50 transition-colors rounded-lg p-6 flex flex-col items-center justify-center text-center cursor-pointer group/upload">
+<div class="size-10 rounded-full bg-surface-dark flex items-center justify-center mb-3 group-hover/upload:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary">cloud_upload</span>
+</div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Click to upload or drag and drop</p>
+<p class="text-xs text-text-secondary mt-1">SVG, PNG, JPG (max. 2MB)</p>
+</div>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Action Buttons (Left Column for Desktop flow) -->
+<div class="flex gap-4 mt-4 pt-4 border-t border-border-dark lg:hidden">
+<button class="flex-1 h-12 px-6 rounded-lg border border-border-dark text-slate-900 dark:text-white font-medium hover:bg-surface-dark transition-colors">
+                        Kembali
+                    </button>
+<button class="flex-1 h-12 px-6 rounded-lg bg-primary text-[#111714] font-bold hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20">
+                        Konfirmasi Pembayaran
+                    </button>
+</div>
+</div>
+<!-- Right Column: Sticky Summary -->
+<div class="lg:w-[380px] shrink-0">
+<div class="sticky top-28 flex flex-col gap-4">
+<!-- Booking Summary Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 border border-gray-200 dark:border-border-dark shadow-sm">
+<div class="flex items-center justify-between mb-4 border-b border-gray-100 dark:border-border-dark pb-4">
+<h3 class="font-bold text-lg">Booking Summary</h3>
+<span class="text-xs font-mono bg-background-light dark:bg-background-dark px-2 py-1 rounded text-text-secondary">#TRIP-2023-889</span>
+</div>
+<div class="flex gap-4 mb-6">
+<div class="w-20 h-20 shrink-0 rounded-lg overflow-hidden bg-gray-700">
+<img alt="Mount Bromo" class="w-full h-full object-cover" data-alt="Sunrise view of Mount Bromo landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu59CmIycVSXD_zy0O_XO8LDcCURIxkyRjd41MLmtQaTrsJyx5N202NVkTI7eFFNWwdI9JL3uvoRPC83LcrJS2I47ClHHcrwJ6spfjSo4ma8PGuRfoYH8_weyxXH7IZY7fAkbMrR5q58I4i9FSU-9KbcK2YvGuNnUfDHlw9Pq3kNjnAPfxz8FdtOUW48vIaCjB8DBAGRmmnHonecPRlj4R4W2pQ_6QbJd8sWYbyvb0jof8fa8bvoRnV80C1IG36Yr8tZGRDrIAYRg"/>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-bold text-slate-900 dark:text-white leading-tight">Open Trip: Mount Bromo Sunrise</h4>
+<div class="flex items-center gap-1 text-sm text-text-secondary">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+<span>12 Oct 2023</span>
+</div>
+<div class="flex items-center gap-1 text-sm text-text-secondary">
+<span class="material-symbols-outlined text-sm">group</span>
+<span>2 Guests</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-sm text-slate-600 dark:text-text-secondary">
+<span>Subtotal (2 Pax)</span>
+<span>Rp 2.400.000</span>
+</div>
+<div class="flex justify-between text-sm text-slate-600 dark:text-text-secondary">
+<span>Service Fee</span>
+<span>Rp 100.000</span>
+</div>
+<div class="flex justify-between text-sm text-green-600 dark:text-green-400">
+<span>Discount</span>
+<span>-Rp 0</span>
+</div>
+<div class="border-t border-gray-100 dark:border-border-dark my-4 pt-4 flex justify-between items-end">
+<div class="flex flex-col">
+<span class="text-sm text-slate-500 dark:text-text-secondary">Total Amount</span>
+<span class="text-2xl font-black text-slate-900 dark:text-primary">Rp 2.500.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="flex items-center justify-center gap-2 text-xs text-text-secondary opacity-80">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>Pembayaran Anda aman dan terenkripsi.</span>
+</div>
+<!-- Desktop Actions -->
+<div class="hidden lg:flex flex-col gap-3 mt-2">
+<button class="w-full h-12 px-6 rounded-lg bg-primary text-[#111714] font-bold hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span>Konfirmasi &amp; Bayar</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="w-full h-12 px-6 rounded-lg border border-border-dark text-slate-900 dark:text-white font-medium hover:bg-surface-dark transition-colors">
+                            Kembali
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="border-t border-gray-200 dark:border-border-dark bg-white dark:bg-background-dark py-8 mt-auto">
+<div class="max-w-[1200px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-sm text-text-secondary">
+                © 2023 TravelApp Indonesia. All rights reserved.
+            </div>
+<div class="flex gap-6">
+<a class="text-sm text-text-secondary hover:text-white" href="#">Privacy Policy</a>
+<a class="text-sm text-text-secondary hover:text-white" href="#">Terms of Service</a>
+<a class="text-sm text-text-secondary hover:text-white" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review Booking - TravelApp</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b366",
+                        "primary-hover": "#148f52",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112119",
+                        "surface-dark": "#1c2621",
+                        "surface-dark-highlight": "#293830",
+                        "text-secondary": "#9eb7ab",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for dark theme consistency */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #112119;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #293830;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #19b366;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-[#293830] bg-white/80 dark:bg-[#112119]/90 backdrop-blur-md">
+<div class="px-4 lg:px-40 flex h-16 items-center justify-between">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold tracking-tight">TravelApp</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Trips</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex h-9 items-center justify-center rounded-lg bg-gray-100 dark:bg-[#293830] px-3 text-xs font-bold tracking-wide">
+                    ID | <span class="text-primary ml-1">EN</span>
+</button>
+<div class="h-9 w-9 rounded-full bg-cover bg-center ring-2 ring-white dark:ring-[#293830]" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbm_u8TFqWXjx6lowb8s6uSrolMdN2qRBmlM1K1YWEdXLnwQxkwV0gMgWf-XyqlZlh1sq8XzUuQvC-BPks-Xn2_XYBgBKwygLJHqKgYdfYF5ZwjESITTzr27c8yrn-FiUd1e-ANXhAeqHoIT9WWhLlZwCSGvU1gZ9B09TChZtFsguHcTk6D3obybMs2LiKcoHlsVRHeHyghSgnzEEVvOxJqJ2QWVMEhVuQ0CP42TPVQIBJKhJzlda9f1UHD7wMKqxytNC59ylcsGQ");'></div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 lg:px-40 py-8 lg:py-12">
+<!-- Progress Bar -->
+<div class="mb-10 max-w-[960px] mx-auto">
+<div class="flex justify-between items-end mb-3">
+<p class="text-base font-semibold">Step 3 of 4</p>
+<p class="text-text-secondary text-sm">Review / Tinjauan</p>
+</div>
+<div class="h-2 w-full rounded-full bg-gray-200 dark:bg-[#3d5247] overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500 ease-out" style="width: 75%;"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-w-[1100px] mx-auto">
+<!-- Left Column: Details -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Header -->
+<div>
+<h1 class="text-3xl lg:text-4xl font-black tracking-tight mb-2">Review Your Booking</h1>
+<p class="text-text-secondary">Please review your order details before proceeding to payment.</p>
+</div>
+<!-- Trip Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 shadow-sm border border-gray-100 dark:border-[#293830]">
+<div class="flex flex-col-reverse sm:flex-row gap-5">
+<div class="flex-1 flex flex-col justify-between gap-4">
+<div>
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold mb-2">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                                    Open Trip
+                                </div>
+<h3 class="text-xl font-bold leading-tight mb-2">Open Trip Labuan Bajo</h3>
+<div class="flex items-center gap-2 text-text-secondary text-sm mb-1">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                                    24 Aug - 26 Aug 2023
+                                </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-[18px]">group</span>
+                                    2 Adults
+                                </div>
+</div>
+<button class="flex items-center gap-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors w-fit group">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-12 transition-transform">edit</span>
+                                Change Trip Details
+                            </button>
+</div>
+<div class="w-full sm:w-48 aspect-video sm:aspect-square rounded-lg bg-cover bg-center relative overflow-hidden" data-alt="Scenic landscape of Labuan Bajo islands and ocean" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0q1HUV9Vn5VKPhGADDVrgxo1D2z1pRLxfvuYdi2NN0E0wiVUZvGoooSqWeCZtF86CPaE56OSOBD0um9P8PJvNtIT2Jou4CFAdPAdpJF1tfkEFpif82Pl2AH81xfHMDj2xmTZQjxHbJpjT0S3gUVWPZVO_gndfi83erKWnHIRxugkjnyhjdgJYvs1bS9R7KibV5AMhQ059xi7LdoI1ITq6RFVqowPlYj2CKgEwhKswJdJM82hexVGH4pso0PDsOLOvaNhqq2zThg4");'>
+</div>
+</div>
+</div>
+<!-- Participants Section -->
+<div>
+<div class="flex items-center justify-between border-b border-gray-200 dark:border-[#293830] pb-4 mb-5">
+<h3 class="text-lg font-bold">Participant Details</h3>
+<button class="text-sm text-primary font-medium hover:underline">Edit Details</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Guest 1 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-surface-dark p-4 rounded-lg border border-gray-100 dark:border-[#293830]">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                    1
+                                </div>
+<div>
+<p class="font-semibold">Budi Santoso</p>
+<p class="text-text-secondary text-sm">Lead Guest</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-text-secondary text-sm bg-gray-50 dark:bg-black/20 px-3 py-2 rounded">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                                +62 812 3456 7890
+                            </div>
+</div>
+<!-- Guest 2 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-surface-dark p-4 rounded-lg border border-gray-100 dark:border-[#293830]">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-gray-200 dark:bg-[#293830] text-text-secondary flex items-center justify-center font-bold">
+                                    2
+                                </div>
+<div>
+<p class="font-semibold">Siti Aminah</p>
+<p class="text-text-secondary text-sm">Adult</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-text-secondary text-sm bg-gray-50 dark:bg-black/20 px-3 py-2 rounded">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                                +62 813 9876 5432
+                            </div>
+</div>
+</div>
+</div>
+<!-- Additional Info / Notes -->
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-lg p-4 flex gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Important Note</p>
+<p class="text-xs text-text-secondary mt-1">Please ensure all participant names match their ID cards. Changes after booking may incur additional fees.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary & Payment -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 flex flex-col gap-6">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-lg border border-gray-100 dark:border-[#293830]">
+<h3 class="text-lg font-bold mb-6">Price Details</h3>
+<div class="flex flex-col gap-3 text-sm mb-6">
+<div class="flex justify-between items-center">
+<span class="text-text-secondary">Open Trip (x2 Pax)</span>
+<span class="font-medium">IDR 5.000.000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-text-secondary">Service Fee</span>
+<span class="font-medium">IDR 50.000</span>
+</div>
+<div class="flex justify-between items-center text-primary">
+<span>Discount (Early Bird)</span>
+<span>- IDR 100.000</span>
+</div>
+</div>
+<div class="h-px bg-gray-200 dark:bg-[#293830] w-full mb-4"></div>
+<div class="flex justify-between items-end mb-8">
+<span class="text-base font-semibold text-text-secondary">Total Amount</span>
+<span class="text-2xl font-black text-primary">IDR 4.950.000</span>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-3.5 px-6 rounded-lg shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+                                Bayar / Pay Now
+                            </button>
+<button class="w-full bg-transparent hover:bg-gray-100 dark:hover:bg-[#293830] text-slate-700 dark:text-gray-300 font-medium py-3 px-6 rounded-lg transition-colors">
+                                Kembali / Back
+                            </button>
+</div>
+</div>
+<!-- WhatsApp Notification Hint -->
+<div class="flex items-start gap-3 px-4">
+<div class="size-8 rounded-full bg-[#25D366]/20 flex items-center justify-center shrink-0 mt-1">
+<!-- Using a generic chat icon since brand icons aren't in Material Symbols, but styling it green -->
+<span class="material-symbols-outlined text-[#25D366] text-sm">chat</span>
+</div>
+<p class="text-xs text-text-secondary leading-relaxed">
+                            Booking confirmation and ticket details will be sent automatically to your <strong>WhatsApp</strong> number after payment is completed.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="border-t border-gray-200 dark:border-[#293830] py-8 bg-white dark:bg-[#112119]">
+<div class="max-w-[1280px] mx-auto px-4 lg:px-40 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-text-secondary text-sm">© 2023 TravelApp Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-text-secondary text-sm hover:text-white" href="#">Privacy Policy</a>
+<a class="text-text-secondary text-sm hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

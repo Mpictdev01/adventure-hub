@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track Booking - TripBooker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b366",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112119",
+                        "card-dark": "#1c2621",
+                        "border-dark": "#293830",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden">
+<div class="relative flex min-h-screen flex-col">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-[#293830] bg-white/80 dark:bg-[#111714]/80 backdrop-blur-md px-10 py-3">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Track Booking</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Open Trip</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Private Trip</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">ID | EN</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-green-600 transition-colors text-[#111714] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Login</span>
+</button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<div class="w-full">
+<div class="w-full">
+<div class="p-4 md:px-40 md:py-10">
+<div class="mx-auto max-w-[960px]">
+<div class="flex min-h-[360px] md:min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-6 relative overflow-hidden" data-alt="Dark moody mountain landscape with fog" style='background-image: linear-gradient(rgba(17, 33, 25, 0.7) 0%, rgba(17, 33, 25, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAw2NzPysqaCeFBKWkncz4MHeJLV0RwXz2qnZZkszjw9zTqD3WC24dDsBi4ZGeTauA1sCPJFYHr6B0dljBtCxHb8HZ3g8NxP2xyO0Uu5ZoVCSJGTQKSh-MwUqJ19iShudFTOVMbrHv5453qzGftCt4lzBgDlRaoFxNcimziK9Kd6PsU0kHVMw48tyTkNxWL9lCxRPmWhaafRUiLlrsJlQqpqvntrw0UPdyBUp-Ar1Ll-JkuTDLdTHqE0nibqkLleFP3z61VItPReTo");'>
+<div class="flex flex-col gap-2 text-center z-10 max-w-2xl">
+<h1 class="text-white text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                                        Cek Status Booking
+                                    </h1>
+<h2 class="text-gray-300 text-sm md:text-base font-normal leading-normal">
+                                        Enter your unique booking code to see trip details and download tickets.
+                                    </h2>
+</div>
+<div class="w-full max-w-[520px] z-10">
+<label class="flex flex-col h-14 w-full md:h-16">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-lg">
+<div class="text-[#9eb7ab] flex border border-[#3d5247] bg-[#1c2621] items-center justify-center pl-[15px] rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-none text-white focus:outline-0 focus:ring-0 border border-[#3d5247] bg-[#1c2621] focus:border-primary h-full placeholder:text-[#9eb7ab] px-3 text-sm font-normal leading-normal md:text-base" placeholder="Enter Booking Code (e.g., TRIP-123)" value=""/>
+<div class="flex items-center justify-center rounded-r-lg border-l-0 border border-[#3d5247] bg-[#1c2621] pr-[7px]">
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 md:h-12 md:px-6 bg-primary hover:bg-green-600 transition-colors text-[#111714] text-sm font-bold leading-normal tracking-[0.015em] md:text-base">
+<span class="truncate">Cek Status</span>
+</button>
+</div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Section -->
+<div class="px-4 md:px-40 pb-20 pt-5">
+<div class="mx-auto max-w-[960px]">
+<!-- Result Card Container -->
+<div class="bg-white dark:bg-card-dark rounded-xl border border-gray-200 dark:border-border-dark overflow-hidden shadow-sm">
+<!-- Header -->
+<div class="flex justify-between items-center px-6 py-5 border-b border-gray-100 dark:border-border-dark bg-gray-50 dark:bg-white/5">
+<h2 class="text-slate-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Booking Result</h2>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-500 border border-green-500/20">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Confirmed
+                            </span>
+</div>
+<!-- Data Grid -->
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<div class="flex flex-col gap-1 pb-4 border-b border-dashed border-gray-200 dark:border-[#3d5247]">
+<p class="text-slate-500 dark:text-[#9eb7ab] text-sm font-medium">Booking Code</p>
+<p class="text-slate-900 dark:text-white text-base font-semibold">#TRIP-8829</p>
+</div>
+<div class="flex flex-col gap-1 pb-4 border-b border-dashed border-gray-200 dark:border-[#3d5247]">
+<p class="text-slate-500 dark:text-[#9eb7ab] text-sm font-medium">Trip Name</p>
+<p class="text-slate-900 dark:text-white text-base font-semibold">Open Trip - Mount Bromo Sunrise</p>
+</div>
+<div class="flex flex-col gap-1 pb-4 border-b border-dashed border-gray-200 dark:border-[#3d5247]">
+<p class="text-slate-500 dark:text-[#9eb7ab] text-sm font-medium">Date</p>
+<p class="text-slate-900 dark:text-white text-base font-semibold">24 Oct 2023</p>
+</div>
+<div class="flex flex-col gap-1 pb-4 border-b border-dashed border-gray-200 dark:border-[#3d5247]">
+<p class="text-slate-500 dark:text-[#9eb7ab] text-sm font-medium">Participants</p>
+<p class="text-slate-900 dark:text-white text-base font-semibold">2 Pax</p>
+</div>
+<div class="flex flex-col gap-1 pb-4 md:pb-0 md:border-b-0 border-b border-dashed border-gray-200 dark:border-[#3d5247]">
+<p class="text-slate-500 dark:text-[#9eb7ab] text-sm font-medium">Payment Status</p>
+<p class="text-slate-900 dark:text-white text-base font-semibold">Paid in Full</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-slate-500 dark:text-[#9eb7ab] text-sm font-medium">Total Amount</p>
+<p class="text-primary text-xl font-bold">IDR 3,500,000</p>
+</div>
+</div>
+</div>
+<!-- Actions Footer -->
+<div class="bg-gray-50 dark:bg-white/5 px-6 py-4 border-t border-gray-200 dark:border-border-dark">
+<div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+<a class="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+                                    Need help? Contact Admin via WhatsApp
+                                </a>
+<div class="flex gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-transparent border border-gray-300 dark:border-[#3d5247] text-slate-700 dark:text-white hover:bg-gray-100 dark:hover:bg-[#2a3831] transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-[18px] mr-2">description</span>
+                                        Invoice
+                                    </button>
+<button class="flex-1 sm:flex-none flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary hover:bg-green-600 transition-colors text-[#111714] text-sm font-bold shadow-lg shadow-green-900/20">
+<span class="material-symbols-outlined text-[18px] mr-2">airplane_ticket</span>
+                                        E-Ticket
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-[#0d1210] border-t border-gray-200 dark:border-[#293830] pt-12 pb-8 px-10">
+<div class="mx-auto max-w-[960px] flex flex-col gap-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-primary">
+<svg class="size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<span class="text-lg font-bold text-slate-900 dark:text-white">TripBooker</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-[#9eb7ab]">Your trusted partner for open and private trips across Indonesia.</p>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Explore</h3>
+<a class="text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">Open Trips</a>
+<a class="text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">Private Trips</a>
+<a class="text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">Destinations</a>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Support</h3>
+<a class="text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">Terms &amp; Conditions</a>
+<a class="text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Contact</h3>
+<a class="flex items-center gap-2 text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                            hello@tripbooker.com
+                        </a>
+<a class="flex items-center gap-2 text-sm text-slate-500 dark:text-[#9eb7ab] hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            +62 812 3456 7890
+                        </a>
+</div>
+</div>
+<div class="border-t border-gray-200 dark:border-[#293830] mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-slate-400 dark:text-[#587566]">© 2023 TripBooker Inc. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="text-slate-400 dark:text-[#587566] hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="size-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-slate-400 dark:text-[#587566] hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="size-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.48 2h-.165zm-3.77 2c-3.371 0-3.728.01-5.16.077-1.282.06-1.98.358-2.446.54-.48.187-.828.411-1.196.78-.369.368-.593.715-.78 1.196-.182.466-.48 1.164-.54 2.446-.067 1.432-.077 1.789-.077 5.16 0 3.371.01 3.728.077 5.16.06 1.282.358 1.98.54 2.446.187.48.411.828.78 1.196.368.369.715.593 1.196.78.466.182 1.164.48 2.446.54 1.432.067 1.789.077 5.16.077 3.371 0 3.728-.01 5.16-.077 1.282-.06 1.98-.358 2.446-.54.48-.187.828-.411 1.196-.78.369-.368.593-.715.78-1.196.182-.466.48-1.164.54-2.446.067-1.432.077-1.789.077-5.16 0-3.371-.01-3.728-.077-5.16-.06-1.282-.358-1.98-.54-2.446-.187-.48-.411-.828-.78-1.196-.368-.369-.715-.593-1.196-.78-.466-.182-1.164-.48-2.446-.54-1.432-.067-1.789-.077-5.16-.077-3.371 0-3.728.01-5.16.077z" fill-rule="evenodd"></path><path clip-rule="evenodd" d="M12.315 5.92a6.395 6.395 0 100 12.79 6.395 6.395 0 000-12.79zm0 10.79a4.395 4.395 0 110-8.79 4.395 4.395 0 010 8.79z" fill-rule="evenodd"></path><path clip-rule="evenodd" d="M19.165 6.6a1.53 1.53 0 11-3.06 0 1.53 1.53 0 013.06 0z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

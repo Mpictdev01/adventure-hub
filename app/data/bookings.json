@@ -1,0 +1,55 @@
+[
+  {
+    "id": "BKG-20241024-001",
+    "tripId": "bromo-sunrise",
+    "tripName": "Mt. Bromo Sunrise",
+    "tripImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuB8wCI9xFc-q5QZOmOOtHxtGtX9BTqtLdqNMcH78FyGrQJpvwKuxmvu7Z_QCSdiN-zdbR_x8O4KVxK0ETpYjbvgPFl0MplVCBYQtuHL5byRP1QRDThVSpow-s-SyC5ssJHdPAojgc79ggpgjsxEBM-FCCUDLZvMlK5vlUkEEDnosgU9dGZX2srkStcK1cuIus0vluohROmEP9xbDPxzUIMCuZ1v25RB4ZbF8cwTEKZKZ2zz1DM2OfirQ8hC6WQ6rdO0lAgOyklJvZk",
+    "tripLocation": "East Java",
+    "customerName": "Budi Santoso",
+    "email": "budi.santoso@email.com",
+    "phone": "081234567890",
+    "date": "2024-11-15T00:00:00.000Z",
+    "guests": 2,
+    "totalPrice": 2400000,
+    "pricePerPax": 1200000,
+    "participants": [
+      {
+        "fullName": "Budi Santoso",
+        "idNumber": "3171234567890001"
+      },
+      {
+        "fullName": "Siti Aminah",
+        "idNumber": "3171234567890002"
+      }
+    ],
+    "status": "Confirmed",
+    "paymentStatus": "Paid",
+    "paymentMethod": "Bank Transfer",
+    "proofOfPaymentUrl": "https://placehold.co/600x800/png?text=Bukti+Transfer+Budi",
+    "createdAt": "2024-10-24T10:30:00.000Z"
+  },
+  {
+    "id": "BKG-20241025-002",
+    "tripId": "rinjani-summit",
+    "tripName": "Mt. Rinjani Summit",
+    "tripImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCK-Ezx_fs_F6TayRto0S_xdtpYmRIGXy09tOsBwNtzT_N9FYrB4963KgLxrK0ukYlVf3fxg9YY6-mj6Wiy1U-lGcqCAAQnMKXPTeOwxpOWBll2xHX3zTIHdYTTgpNNdFljjx9OTT-yC7tRhbflwWwFycZcGNTP93dGvTQirEJjWSoy03O2JeY3XdK0tmmSDqGZEkH4WbwGOLtAuW4-REalvrFERr8D89pklzWOYrCBuvqz4vAoYHQLFjpWUdY_67VrMHZ10WEf_vU",
+    "tripLocation": "Lombok",
+    "customerName": "John Doe",
+    "email": "john.doe@email.com",
+    "phone": "+6281987654321",
+    "date": "2024-12-01T00:00:00.000Z",
+    "guests": 1,
+    "totalPrice": 2800000,
+    "pricePerPax": 2800000,
+    "participants": [
+      {
+        "fullName": "John Doe",
+        "idNumber": "P12345678"
+      }
+    ],
+    "status": "Confirmed",
+    "paymentStatus": "Paid",
+    "paymentMethod": "Credit Card",
+    "createdAt": "2024-10-25T14:15:00.000Z"
+  }
+]
