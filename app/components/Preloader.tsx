@@ -13,6 +13,7 @@ function PreloaderContent() {
 
   useEffect(() => {
     // Promise 1: Tunggu minimal 2 detik (agar animasi text selesai)
+    console.log('Preloader v1.1 - Checking deployment');
     const minTimePromise = new Promise((resolve) => setTimeout(resolve, 2000));
     
     // Promise 2: Tunggu halaman selesai loading

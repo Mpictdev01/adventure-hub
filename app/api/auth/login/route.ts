@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import { verifyAdminCredentials } from '../../../lib/db';
+// Corrected path to point to app/lib/db
 
 export async function POST(request: Request) {
   try {
