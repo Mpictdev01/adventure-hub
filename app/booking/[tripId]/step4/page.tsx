@@ -527,7 +527,7 @@ export default function Step4Page() {
 								<div className="flex justify-between">
 									<span className="text-text-secondary">Payment</span>
 									<span className="text-white font-medium">
-										{selectedBank.name}
+										{selectedBank.bankName}
 									</span>
 								</div>
 							)}
