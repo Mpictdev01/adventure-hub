@@ -2,7 +2,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import WhatsAppFAB from "../../components/WhatsAppFAB";
 import Link from "next/link";
-import { getTripById, TRIPS_DATA } from "../../data/trips";
+import { getTripById } from "../../data/trips";
 import { notFound } from "next/navigation";
 
 interface TripDetailPageProps {
