@@ -61,20 +61,26 @@ export default function Step1Page() {
 							{
 								id: "slot-1",
 								date: trip.date || "Jan 15-17, 2025",
+								displayDate: trip.date || "Jan 15-17, 2025",
 								price: basePrice,
-								availableSpots: 8,
+								spotsLeft: 8,
+								status: "normal",
 							},
 							{
 								id: "slot-2",
 								date: "Jan 22-24, 2025",
+								displayDate: "Jan 22-24, 2025",
 								price: basePrice,
-								availableSpots: 5,
+								spotsLeft: 5,
+								status: "filling-fast",
 							},
 							{
 								id: "slot-3",
 								date: "Feb 5-7, 2025",
+								displayDate: "Feb 5-7, 2025",
 								price: basePrice,
-								availableSpots: 10,
+								spotsLeft: 10,
+								status: "normal",
 							},
 						],
 					};
@@ -133,8 +139,10 @@ export default function Step1Page() {
 			const privateSlot: SlotInfo = {
 				id: "private-slot",
 				date: formatDateForDisplay(selectedDate),
+				displayDate: formatDateForDisplay(selectedDate),
 				price: tripData.basePrice,
-				availableSpots: 99, // Private trip = custom group
+				spotsLeft: 99, // Private trip = custom group
+				status: "normal",
 			};
 			setSelectedSlot(privateSlot);
 			updateBooking({
