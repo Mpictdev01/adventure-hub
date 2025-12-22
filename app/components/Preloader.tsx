@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function Preloader() {
+import { Suspense } from 'react';
+
+function PreloaderContent() {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -69,5 +71,13 @@ export default function Preloader() {
         </span>
       </div>
     </div>
+  );
+}
+
+export default function Preloader() {
+  return (
+    <Suspense fallback={null}>
+      <PreloaderContent />
+    </Suspense>
   );
 }
