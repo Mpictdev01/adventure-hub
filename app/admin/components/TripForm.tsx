@@ -175,7 +175,7 @@ export default function TripForm({ initialData, isEdit = false }: TripFormProps)
            <div className="flex items-center gap-4">
               <input
                 type="file"
-                accept="image/*"
+                // accept="image/*" // Removed to allow all file types as requested
                 onChange={async (e) => {
                   const file = e.target.files?.[0];
                   if (!file) return;
