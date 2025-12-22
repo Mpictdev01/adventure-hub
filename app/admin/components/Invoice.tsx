@@ -45,10 +45,10 @@ export default function Invoice({ booking, onClose }: InvoiceProps) {
               <p className="text-sm font-medium text-gray-500 mt-1">AdventureHub Inc.</p>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-gray-900">#{booking.id.split('-').pop()}</div>
+              <div className="text-2xl font-bold text-gray-900">#{booking?.id?.split('-')?.pop() || 'N/A'}</div>
               <div className="mt-1 text-sm text-gray-600">
-                <p>Date: <span className="font-bold text-gray-900">{new Date(booking.createdAt).toLocaleDateString()}</span></p>
-                <p>Status: <span className={`font-bold uppercase ${booking.paymentStatus === 'Paid' ? 'text-green-600' : 'text-red-600'}`}>{booking.paymentStatus}</span></p>
+                <p>Date: <span className="font-bold text-gray-900">{booking.createdAt ? new Date(booking.createdAt).toLocaleDateString() : 'N/A'}</span></p>
+                <p>Status: <span className={`font-bold uppercase ${booking.paymentStatus === 'Paid' ? 'text-green-600' : 'text-red-600'}`}>{booking.paymentStatus || 'Pending'}</span></p>
               </div>
             </div>
           </div>
@@ -66,10 +66,10 @@ export default function Invoice({ booking, onClose }: InvoiceProps) {
              </div>
              <div className="w-1/2 text-right">
                 <h3 className="text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Bill To</h3>
-                <p className="font-bold text-lg text-gray-900">{booking.customerName}</p>
+                <p className="font-bold text-lg text-gray-900">{booking.customerName || 'N/A'}</p>
                 <div className="text-sm text-gray-600 space-y-1 mt-1">
-                  <p>{booking.email}</p>
-                  <p>{booking.phone}</p>
+                  <p>{booking.email || 'N/A'}</p>
+                  <p>{booking.phone || 'N/A'}</p>
                 </div>
              </div>
           </div>
@@ -88,15 +88,15 @@ export default function Invoice({ booking, onClose }: InvoiceProps) {
                 <tbody className="divide-y divide-gray-200">
                    <tr>
                       <td className="py-4 pr-4">
-                         <p className="font-bold text-gray-900 text-base">{booking.tripName}</p>
-                         <p className="text-sm text-gray-500">{booking.tripLocation}</p>
+                         <p className="font-bold text-gray-900 text-base">{booking.tripName || 'Trip Name'}</p>
+                         <p className="text-sm text-gray-500">{booking.tripLocation || 'Location'}</p>
                          <p className="text-xs text-gray-400 mt-1">
-                           Travel Date: {new Date(booking.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                           Travel Date: {booking.date ? new Date(booking.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'}
                          </p>
                       </td>
-                      <td className="py-4 text-right align-top text-gray-700">IDR {booking.pricePerPax.toLocaleString()}</td>
-                      <td className="py-4 text-right align-top">{booking.guests}</td>
-                      <td className="py-4 text-right align-top font-bold text-gray-900">IDR {booking.totalPrice.toLocaleString()}</td>
+                      <td className="py-4 text-right align-top text-gray-700">IDR {(booking.pricePerPax || 0).toLocaleString()}</td>
+                      <td className="py-4 text-right align-top">{booking.guests || 0}</td>
+                      <td className="py-4 text-right align-top font-bold text-gray-900">IDR {(booking.totalPrice || 0).toLocaleString()}</td>
                    </tr>
                 </tbody>
              </table>
@@ -107,11 +107,11 @@ export default function Invoice({ booking, onClose }: InvoiceProps) {
              <div className="w-64 space-y-2 text-sm">
                 <div className="flex justify-between text-gray-600">
                    <span>Subtotal</span>
-                   <span>IDR {booking.totalPrice.toLocaleString()}</span>
+                   <span>IDR {(booking.totalPrice || 0).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-2xl font-extrabold text-blue-900 pt-4 border-t border-gray-200 mt-2">
                    <span>Total</span>
-                   <span>IDR {booking.totalPrice.toLocaleString()}</span>
+                   <span>IDR {(booking.totalPrice || 0).toLocaleString()}</span>
                 </div>
              </div>
           </div>
@@ -120,10 +120,10 @@ export default function Invoice({ booking, onClose }: InvoiceProps) {
           <div className="border-t border-dashed border-gray-300 pt-8">
             <h3 className="text-xs font-bold text-gray-400 uppercase mb-4 tracking-wider">Registered Participants</h3>
             <div className="grid grid-cols-2 gap-4">
-               {booking.participants.map((p, idx) => (
+               {(booking.participants || []).map((p, idx) => (
                  <div key={idx} className="bg-gray-50 p-3 rounded border border-gray-100 break-inside-avoid">
-                    <p className="font-bold text-sm text-gray-800">{p.fullName}</p>
-                    <p className="text-xs text-gray-500 font-mono">ID: {p.idNumber}</p>
+                    <p className="font-bold text-sm text-gray-800">{p.fullName || 'N/A'}</p>
+                    <p className="text-xs text-gray-500 font-mono">ID: {p.idNumber || 'N/A'}</p>
                  </div>
                ))}
             </div>
