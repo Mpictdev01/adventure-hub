@@ -9,14 +9,28 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin1722') {
-      // Set cookie for simple auth (in a real app use HttpOnly cookies/sessions)
-      document.cookie = "admin_auth=true; path=/";
-      router.push('/admin');
-    } else {
-      setError('Invalid credentials');
+    setError('');
+    
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Set cookie for simple auth (compatible with existing layout)
+        document.cookie = "admin_auth=true; path=/; max-age=86400"; // 1 day
+        router.push('/admin');
+      } else {
+        setError(data.error || 'Invalid credentials');
+      }
+    } catch (err) {
+       setError('Login failed. Please try again.');
     }
   };
 
