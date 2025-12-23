@@ -192,6 +192,8 @@ export const updateBookingStatus = async (id: string, status: Booking['status'])
   }
 };
 
+
+
 export const updateBooking = async (id: string, updates: Partial<Booking>): Promise<void> => {
   const snakeCaseUpdates = toSnakeCase(updates as unknown as Record<string, unknown>);
   
@@ -515,4 +517,56 @@ export const deleteBankAccount = async (id: string): Promise<void> => {
     console.error('Error deleting bank account:', error);
     throw error;
   }
+};
+
+// ==================== SITE SETTINGS ====================
+export interface SiteSetting {
+  key: string;
+  value: string;
+}
+
+export const getSiteSetting = async (key: string): Promise<string | undefined> => {
+  const { data, error } = await supabase
+    .from('site_settings')
+    .select('value')
+    .eq('key', key)
+    .single();
+  
+  if (error) {
+    console.error(`Error fetching setting ${key}:`, error);
+    return undefined;
+  }
+  
+  return data?.value;
+};
+
+export const updateSiteSetting = async (key: string, value: string): Promise<void> => {
+  const { error } = await supabase
+    .from('site_settings')
+    .upsert({ key, value });
+  
+  if (error) {
+    console.error(`Error updating setting ${key}:`, error);
+    throw error;
+  }
+};
+
+export const uploadImage = async (file: File, path: string): Promise<string | null> => {
+  const { data, error } = await supabase.storage
+    .from('trip-images')
+    .upload(path, file, {
+      upsert: true,
+      cacheControl: '3600'
+    });
+
+  if (error) {
+    console.error('Error uploading image:', error);
+    return null;
+  }
+
+  const { data: { publicUrl } } = supabase.storage
+    .from('trip-images')
+    .getPublicUrl(path);
+
+  return publicUrl;
 };

@@ -10,9 +10,10 @@ interface HomeContentProps {
   privateTrips: Trip[];
   allArticles: Article[];
   galleryItems: GalleryItem[];
+  heroBgUrl?: string;
 }
 
-export default function HomeContent({ openTrips, privateTrips, allArticles, galleryItems }: HomeContentProps) {
+export default function HomeContent({ openTrips, privateTrips, allArticles, galleryItems, heroBgUrl }: HomeContentProps) {
   const { t } = useLanguage();
 
   return (
@@ -24,7 +25,7 @@ export default function HomeContent({ openTrips, privateTrips, allArticles, gall
           <img
             alt="Dramatic mountain peaks piercing through clouds at sunset"
             className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLKHHweBA6LhzgFj4VzgDepwFcU5pErPdxtySiTgeKVzT6shZUq3GxqQudczMrN3sQJ16SXp4A_dvgDnbPdEyWXJOYca4s0uvcFvkQWfYQVCEIcWlnpan8CAhZnWgiFKwfFQUZTvNuqBBxsdjcbTxVfkM_w-fE08yQZ5ztZapsVF8L-wIIcrPZlkk3I2cGPf2mFgKkGhuJoH8lVFSNAX9Jt9qLXzdGQ_JBQxMIJ82mdtHFmb_m4LMV0rp8RiLS0GvVCDIwGOOrDb4"
+            src={heroBgUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuCLKHHweBA6LhzgFj4VzgDepwFcU5pErPdxtySiTgeKVzT6shZUq3GxqQudczMrN3sQJ16SXp4A_dvgDnbPdEyWXJOYca4s0uvcFvkQWfYQVCEIcWlnpan8CAhZnWgiFKwfFQUZTvNuqBBxsdjcbTxVfkM_w-fE08yQZ5ztZapsVF8L-wIIcrPZlkk3I2cGPf2mFgKkGhuJoH8lVFSNAX9Jt9qLXzdGQ_JBQxMIJ82mdtHFmb_m4LMV0rp8RiLS0GvVCDIwGOOrDb4"}
           />
           <div className="absolute inset-0 hero-gradient"></div>
         </div>

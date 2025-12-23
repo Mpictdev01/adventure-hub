@@ -40,6 +40,7 @@ export default function AdminLayout({
     { name: 'Dashboard', href: '/admin', icon: 'dashboard' },
     { name: 'Trips', href: '/admin/trips', icon: 'hiking' },
     { name: 'Bookings', href: '/admin/bookings', icon: 'calendar_month' },
+    { name: 'Reports', href: '/admin/reports', icon: 'assessment' },
     { name: 'Articles', href: '/admin/articles', icon: 'article' },
     { name: 'Gallery', href: '/admin/gallery', icon: 'photo_library' },
   ];
@@ -47,6 +48,7 @@ export default function AdminLayout({
   const settingsItems = [
     { name: 'Users', href: '/admin/users', icon: 'group' },
     { name: 'Bank Accounts', href: '/admin/bank-accounts', icon: 'account_balance' },
+    { name: 'Settings', href: '/admin/settings', icon: 'settings' },
   ];
 
   return (
